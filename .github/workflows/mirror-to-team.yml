@@ -33,5 +33,5 @@ jobs:
           git remote remove team 2>/dev/null || true
           git remote add team "${TEAM_URL}"
 
-          # 개인레포의 현재 브랜치 내용을 팀레포의 SooyeonJ 브랜치로 반영
-          git push team "HEAD:SooyeonJ"
+          # 미러 전용 브랜치: 원격 SooyeonJ를 항상 개인 레포 상태로 덮어씀
+          git push team "HEAD:SooyeonJ" --force
