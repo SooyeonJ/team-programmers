@@ -1,4 +1,4 @@
-name: Mirror to team_CS-Study
+name: Mirror to team_CS-Study (SooyeonJ branch)
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Push to team repo (same branch name)
+      - name: Push to team repo (to SooyeonJ branch)
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
@@ -30,11 +30,8 @@ jobs:
 
           TEAM_URL="https://x-access-token:${PAT_TOKEN}@github.com/SooyeonJ/team_CS-Study.git"
 
-          # reset remote (in case of reruns)
           git remote remove team 2>/dev/null || true
           git remote add team "${TEAM_URL}"
 
-          BRANCH="${GITHUB_REF_NAME}"
-          echo "Mirroring branch: ${BRANCH}"
-
-          git push team "HEAD:${BRANCH}"
+          # 개인레포의 현재 브랜치 내용을 팀레포의 SooyeonJ 브랜치로 반영
+          git push team "HEAD:SooyeonJ"
